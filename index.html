@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GradFlow – Where AI meets fluid dynamics</title>
+
+  <!-- Basic meta -->
+  <meta name="description"
+        content="GradFlow – Where AI meets fluid dynamics. A lightweight CFD and AI companion that runs locally and is delivered as a simple download." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Canonical URL – change this to your real GitHub Pages URL when you know it -->
+  <link rel="canonical" href="https://your-username.github.io/gradflow/" />
+
+  <!-- Favicons – optional, you can remove these lines if you do not have icons yet -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Open Graph (social preview) -->
+  <meta property="og:site_name" content="GradFlow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-username.github.io/gradflow/" />
+  <meta property="og:title" content="GradFlow – Where AI meets fluid dynamics" />
+  <meta property="og:description"
+        content="A compact CFD and AI toolkit that augments existing solvers with surrogate models and intelligent parameter studies." />
+  <!-- Change this image URL when you have a social preview image -->
+  <meta property="og:image" content="https://your-username.github.io/gradflow/gradflow-social.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GradFlow – Where AI meets fluid dynamics" />
+  <meta name="twitter:description"
+        content="A lightweight AI companion for CFD, delivered as a simple download instead of a complex cloud platform." />
+  <meta name="twitter:image" content="https://your-username.github.io/gradflow/gradflow-social.jpg" />
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-band: #004b80;
+      --bg-card: #ffffff;
+      --border: #d0d4dd;
+      --accent: #007acf;
+      --accent-soft: #e2f1ff;
+      --text: #111827;
+      --text-muted: #4b5563;
+      --footer-bg: #111827;
+      --footer-text: #d1d5db;
+      --radius: 6px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      colour: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      colour: inherit;
+      text-decoration: none;
+    }
+
+    /* Top bar */
+
+    header {
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .top-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      align-items: centre;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: centre;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 0%, #ffffff, #2563eb);
+      border: 1px solid #cbd5f5;
+      display: flex;
+      align-items: centre;
+      justify-content: centre;
+      box-shadow: 0 0 0 2px #eff6ff;
+    }
+
+    .logo-mark-inner {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid #1d4ed8;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+      transform: rotate(35deg);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      colour: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: centre;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .nav-link {
+      colour: var(--text-muted);
+    }
+
+    .nav-link:hover {
+      colour: var(--accent);
+    }
+
+    .nav-button {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: #ffffff;
+      colour: var(--accent);
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .nav-button.primary {
+      background: var(--accent);
+      colour: #ffffff;
+    }
+
+    @media (max-width: 800px) {
+      .top-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    /* Hero band */
+
+    .hero {
+      background: var(--bg-band);
+      colour: #ffffff;
+      padding: 24px 0 32px;
+      margin-bottom: 24px;
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: centre;
+    }
+
+    @media (max-width: 880px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.4rem);
+      font-weight: 650;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .btn-main {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ffffff;
+      colour: #1e40af;
+      font-weight: 550;
+      font-size: 0.94rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      background: transparent;
+      colour: #e5edff;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .hero-footnote {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .hero-card {
+      background: #f9fafb;
+      border-radius: var(--radius);
+      border: 1px solid #e5e7eb;
+      padding: 14px 14px 12px;
+      colour: #111827;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+      font-size: 0.88rem;
+    }
+
+    .hero-card h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-list {
+      margin-top: 8px;
+      font-size: 0.84rem;
+    }
+
+    .hero-list li {
+      margin-left: 16px;
+      margin-bottom: 3px;
+    }
+
+    /* Main content cards */
+
+    .main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 16px 32px;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 12px 12px 14px;
+      font-size: 0.9rem;
+      colour: var(--text-muted);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      colour: var(--text);
+    }
+
+    .card a {
+      colour: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-size: 0.86rem;
+    }
+
+    /* News list */
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      colour: var(--text);
+    }
+
+    .news-list {
+      font-size: 0.9rem;
+      colour: var(--text-muted);
+      list-style: none;
+    }
+
+    .news-item {
+      padding: 4px 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .news-date {
+      font-size: 0.78rem;
+      colour: #6b7280;
+      margin-right: 6px;
+    }
+
+    /* Footer */
+
+    footer {
+      background: var(--footer-bg);
+      colour: var(--footer-text);
+      font-size: 0.8rem;
+      padding: 10px 16px;
+    }
+
+    .footer-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      align-items: centre;
+    }
+
+    footer a {
+      colour: #93c5fd;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top bar like OpenFOAM (logo + key links + download) -->
+  <header>
+    <div class="top-inner">
+      <div class="brand">
+        <div class="logo-mark">
+          <div class="logo-mark-inner"></div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">GradFlow</div>
+          <div class="brand-tagline">Where AI meets fluid dynamics</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#download" class="nav-link">Download</a>
+        <a href="#docs" class="nav-link">Documentation</a>
+        <a href="#training" class="nav-link">Training</a>
+        <a href="#news" class="nav-link">News</a>
+        <button class="nav-button primary" onclick="document.getElementById('download').scrollIntoView()">
+          Get GradFlow
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero band with main message -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1 class="hero-title">GradFlow – AI companion for CFD engineers.</h1>
+        <p class="hero-subtitle">
+          A compact application for building surrogate models and parameter
+          studies on top of your existing CFD solvers.
+        </p>
+        <p class="hero-note">
+          Keep your cases and data on your own machines, while using modern
+          machine learning to explore design spaces faster.
+        </p>
+
+        <div class="hero-actions" id="download">
+          <!-- change GradFlow.zip to your real zip filename -->
+          <a href="GradFlow.zip" class="btn-main" download>Download GradFlow (.zip)</a>
+          <a href="#docs" class="btn-secondary">Read the quick-start guide</a>
+        </div>
+
+        <p class="hero-footnote">
+          No accounts, no licence server, no always-online requirement – just
+          download, unzip, and start working.
+        </p>
+      </div>
+
+      <aside class="hero-card">
+        <h2>What GradFlow is for</h2>
+        <p>
+          GradFlow is designed to sit beside tools such as OpenFOAM or
+          commercial CFD packages, not to replace them. Use it for:
+        </p>
+        <ul class="hero-list">
+          <li>surrogate models trained on CFD data,</li>
+          <li>gradient-aware parameter sweeps,</li>
+          <li>quick design exploration for research and teaching.</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Main cards: Download / Documentation / Training -->
+  <main class="main">
+    <div class="cards-3">
+      <section class="card">
+        <h3>Download</h3>
+        <p>
+          Get the latest GradFlow package as a single zip file. Works
+          offline once downloaded.
+        </p>
+        <p style="margin-top:6px;">
+          <a href="GradFlow.zip">Download GradFlow (.zip)</a>
+        </p>
+      </section>
+
+      <section class="card" id="docs">
+        <h3>Documentation</h3>
+        <p>
+          A short quick-start guide explains how to connect GradFlow to your
+          CFD data, train models, and evaluate new points.
+        </p>
+        <p style="margin-top:6px;">
+          <!-- replace docs link when you have one -->
+          <a href="#">Open quick-start (coming soon)</a>
+        </p>
+      </section>
+
+      <section class="card" id="training">
+        <h3>Training and examples</h3>
+        <p>
+          Example projects show how to use GradFlow for laminar flames,
+          aerodynamics, and other classical CFD problems.
+        </p>
+        <p style="margin-top:6px;">
+          <a href="#">View example cases (coming soon)</a>
+        </p>
+      </section>
+    </div>
+
+    <!-- Simple news panel like OpenFOAM's front page -->
+    <section id="news">
+      <h2 class="section-title">News</h2>
+      <ul class="news-list">
+        <li class="news-item">
+          <span class="news-date">2026-02-01</span>
+          Initial GradFlow preview released as downloadable zip package.
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026-??-??</span>
+          Planned: example case for hydrogen combustion surrogate models.
+        </li>
+        <li class="news-item">
+          <span class="news-date">2026-??-??</span>
+          Planned: documentation site with tutorials and theory notes.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© GradFlow – Where AI meets fluid dynamics.</span>
+      <span>
+        Contact: <a href="mailto:your-email@example.com">your-email@example.com</a>
+      </span>
+    </div>
+  </footer>
+</body>
+</html>
