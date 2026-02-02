@@ -4,48 +4,39 @@
   <meta charset="utf-8" />
   <title>GradFlow – Where AI meets fluid dynamics</title>
 
-  <!-- Basic meta -->
   <meta name="description"
         content="GradFlow – Where AI meets fluid dynamics. A lightweight CFD and AI companion that runs locally and is delivered as a simple download." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Canonical URL – change this to your real GitHub Pages URL when you know it -->
-  <link rel="canonical" href="https://your-username.github.io/gradflow/" />
-
-  <!-- Favicons – optional, you can remove these lines if you do not have icons yet -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <meta name="theme-color" content="#ffffff">
-
-  <!-- Open Graph (social preview) -->
-  <meta property="og:site_name" content="GradFlow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://your-username.github.io/gradflow/" />
-  <meta property="og:title" content="GradFlow – Where AI meets fluid dynamics" />
-  <meta property="og:description"
-        content="A compact CFD and AI toolkit that augments existing solvers with surrogate models and intelligent parameter studies." />
-  <!-- Change this image URL when you have a social preview image -->
-  <meta property="og:image" content="https://your-username.github.io/gradflow/gradflow-social.jpg" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="GradFlow – Where AI meets fluid dynamics" />
-  <meta name="twitter:description"
-        content="A lightweight AI companion for CFD, delivered as a simple download instead of a complex cloud platform." />
-  <meta name="twitter:image" content="https://your-username.github.io/gradflow/gradflow-social.jpg" />
+  <!-- When you know your real URL, update this -->
+  <link rel="canonical" href="https://your-username.github.io/gradflow-site/" />
 
   <style>
     :root {
-      --bg: #f5f5f7;
-      --bg-band: #004b80;
+      /* Backgrounds */
+      --bg-page: #ffffff;      /* main page background */
+      --bg-section: #f6f8fb;   /* light blue-grey band */
       --bg-card: #ffffff;
-      --border: #d0d4dd;
-      --accent: #007acf;
-      --accent-soft: #e2f1ff;
-      --text: #111827;
+
+      /* Text */
+      --text-main: #1f2933;    /* near-black */
       --text-muted: #4b5563;
-      --footer-bg: #111827;
-      --footer-text: #d1d5db;
+
+      /* Borders */
+      --border-light: #d1d5db;
+
+      /* Accent (single, restrained) */
+      --accent: #1f5aa6;       /* academic blue */
+      --accent-soft: #e9f0fa;
+
+      /* Buttons */
+      --button-bg: #1f5aa6;
+      --button-hover: #1a4c8c;
+
+      /* Footer */
+      --footer-bg: #1f2933;
+      --footer-text: #e5e7eb;
+
       --radius: 6px;
     }
 
@@ -58,8 +49,8 @@
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      background: var(--bg);
-      colour: var(--text);
+      background: var(--bg-page);
+      colour: var(--text-main);
       -webkit-font-smoothing: antialiased;
     }
 
@@ -68,17 +59,17 @@
       text-decoration: none;
     }
 
-    /* Top bar */
+    /* Top navigation */
 
     header {
-      border-bottom: 1px solid #e5e7eb;
       background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .top-inner {
+    .nav-inner {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 8px 16px;
+      padding: 10px 18px;
       display: flex;
       align-items: centre;
       justify-content: space-between;
@@ -89,29 +80,13 @@
     .brand {
       display: flex;
       align-items: centre;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .logo-mark {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 0%, #ffffff, #2563eb);
-      border: 1px solid #cbd5f5;
-      display: flex;
-      align-items: centre;
-      justify-content: centre;
-      box-shadow: 0 0 0 2px #eff6ff;
-    }
-
-    .logo-mark-inner {
-      width: 18px;
-      height: 18px;
+    .logo-img {
+      height: 32px;
+      width: auto;
       border-radius: 4px;
-      border: 2px solid #1d4ed8;
-      border-bottom-color: transparent;
-      border-left-color: transparent;
-      transform: rotate(35deg);
     }
 
     .brand-text {
@@ -123,18 +98,19 @@
     .brand-name {
       font-weight: 600;
       letter-spacing: 0.04em;
+      colour: var(--text-main);
     }
 
     .brand-tagline {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       colour: var(--text-muted);
     }
 
     .nav-links {
       display: flex;
       align-items: centre;
-      gap: 12px;
-      font-size: 0.88rem;
+      gap: 14px;
+      font-size: 0.9rem;
     }
 
     .nav-link {
@@ -146,26 +122,25 @@
     }
 
     .nav-button {
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid var(--accent);
-      background: #ffffff;
-      colour: var(--accent);
-      font-size: 0.85rem;
+      border: 1px solid var(--button-bg);
+      background: var(--button-bg);
+      colour: #ffffff;
+      font-size: 0.86rem;
       cursor: pointer;
     }
 
-    .nav-button.primary {
-      background: var(--accent);
-      colour: #ffffff;
+    .nav-button:hover {
+      background: var(--button-hover);
+      border-colour: var(--button-hover);
     }
 
     @media (max-width: 800px) {
-      .top-inner {
+      .nav-inner {
         flex-direction: column;
         align-items: flex-start;
       }
-
       .nav-links {
         flex-wrap: wrap;
       }
@@ -174,16 +149,16 @@
     /* Hero band */
 
     .hero {
-      background: var(--bg-band);
-      colour: #ffffff;
-      padding: 24px 0 32px;
+      background: var(--bg-section);
+      border-bottom: 1px solid var(--border-light);
+      padding: 30px 0 32px;
       margin-bottom: 24px;
     }
 
     .hero-inner {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 0 18px;
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
       gap: 24px;
@@ -200,17 +175,23 @@
       font-size: clamp(2rem, 3vw, 2.4rem);
       font-weight: 650;
       margin-bottom: 10px;
+      colour: var(--text-main);
+    }
+
+    .hero-title span {
+      colour: var(--accent);
     }
 
     .hero-subtitle {
       font-size: 1rem;
       margin-bottom: 10px;
+      colour: var(--text-main);
     }
 
     .hero-note {
       font-size: 0.9rem;
-      opacity: 0.9;
       margin-bottom: 16px;
+      colour: var(--text-muted);
     }
 
     .hero-actions {
@@ -221,49 +202,57 @@
     }
 
     .btn-main {
-      padding: 9px 16px;
+      padding: 9px 18px;
       border-radius: 999px;
       border: none;
-      background: #ffffff;
-      colour: #1e40af;
+      background: var(--button-bg);
+      colour: #ffffff;
       font-weight: 550;
       font-size: 0.94rem;
       cursor: pointer;
     }
 
+    .btn-main:hover {
+      background: var(--button-hover);
+    }
+
     .btn-secondary {
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--accent);
       background: transparent;
-      colour: #e5edff;
+      colour: var(--accent);
       font-size: 0.88rem;
       cursor: pointer;
     }
 
+    .btn-secondary:hover {
+      background: var(--accent-soft);
+    }
+
     .hero-footnote {
-      font-size: 0.78rem;
-      opacity: 0.9;
+      font-size: 0.8rem;
+      colour: var(--text-muted);
     }
 
     .hero-card {
-      background: #f9fafb;
+      background: #ffffff;
       border-radius: var(--radius);
-      border: 1px solid #e5e7eb;
-      padding: 14px 14px 12px;
-      colour: #111827;
-      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+      border: 1px solid var(--border-light);
+      padding: 16px 14px;
       font-size: 0.88rem;
+      colour: var(--text-muted);
     }
 
     .hero-card h2 {
       font-size: 1rem;
       margin-bottom: 6px;
+      colour: var(--text-main);
     }
 
     .hero-list {
       margin-top: 8px;
-      font-size: 0.84rem;
+      font-size: 0.86rem;
     }
 
     .hero-list li {
@@ -271,25 +260,25 @@
       margin-bottom: 3px;
     }
 
-    /* Main content cards */
+    /* Main content */
 
     .main {
       max-width: 1040px;
       margin: 0 auto;
-      padding: 0 16px 32px;
+      padding: 0 18px 32px;
     }
 
     .cards-3 {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
     }
 
     .card {
       background: var(--bg-card);
       border-radius: var(--radius);
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-light);
       padding: 12px 12px 14px;
       font-size: 0.9rem;
       colour: var(--text-muted);
@@ -298,7 +287,7 @@
     .card h3 {
       font-size: 1rem;
       margin-bottom: 4px;
-      colour: var(--text);
+      colour: var(--text-main);
     }
 
     .card a {
@@ -308,23 +297,21 @@
       font-size: 0.86rem;
     }
 
-    /* News list */
-
     .section-title {
       font-size: 1.2rem;
       margin-bottom: 6px;
-      colour: var(--text);
+      colour: var(--text-main);
     }
 
     .news-list {
+      list-style: none;
       font-size: 0.9rem;
       colour: var(--text-muted);
-      list-style: none;
     }
 
     .news-item {
       padding: 4px 0;
-      border-bottom: 1px solid #e5e7eb;
+      border-bottom: 1px solid var(--border-light);
     }
 
     .news-date {
@@ -339,7 +326,7 @@
       background: var(--footer-bg);
       colour: var(--footer-text);
       font-size: 0.8rem;
-      padding: 10px 16px;
+      padding: 10px 18px;
     }
 
     .footer-inner {
@@ -353,20 +340,19 @@
     }
 
     footer a {
-      colour: #93c5fd;
+      colour: #bfdbfe;
       text-decoration: underline;
       text-underline-offset: 3px;
     }
   </style>
 </head>
 <body>
-  <!-- Top bar like OpenFOAM (logo + key links + download) -->
+  <!-- Top navigation with Download + Contact us -->
   <header>
-    <div class="top-inner">
+    <div class="nav-inner">
       <div class="brand">
-        <div class="logo-mark">
-          <div class="logo-mark-inner"></div>
-        </div>
+        <!-- Put GradFlow-Logo.png in the same folder as this file -->
+        <img src="GradFlow-Logo.png" alt="GradFlow logo" class="logo-img">
         <div class="brand-text">
           <div class="brand-name">GradFlow</div>
           <div class="brand-tagline">Where AI meets fluid dynamics</div>
@@ -374,34 +360,37 @@
       </div>
       <nav class="nav-links">
         <a href="#download" class="nav-link">Download</a>
-        <a href="#docs" class="nav-link">Documentation</a>
-        <a href="#training" class="nav-link">Training</a>
-        <a href="#news" class="nav-link">News</a>
-        <button class="nav-button primary" onclick="document.getElementById('download').scrollIntoView()">
+        <a href="#contact" class="nav-link">Contact us</a>
+        <button class="nav-button"
+                onclick="document.getElementById('download').scrollIntoView()">
           Get GradFlow
         </button>
       </nav>
     </div>
   </header>
 
-  <!-- Hero band with main message -->
+  <!-- Hero section -->
   <section class="hero">
     <div class="hero-inner">
       <div>
-        <h1 class="hero-title">GradFlow – AI companion for CFD engineers.</h1>
+        <h1 class="hero-title">
+          <span>GradFlow</span> – AI companion for CFD engineers.
+        </h1>
         <p class="hero-subtitle">
           A compact application for building surrogate models and parameter
           studies on top of your existing CFD solvers.
         </p>
         <p class="hero-note">
-          Keep your cases and data on your own machines, while using modern
-          machine learning to explore design spaces faster.
+          Keep your cases and data on your own machines while using modern
+          machine learning to explore design spaces more intelligently.
         </p>
 
         <div class="hero-actions" id="download">
-          <!-- change GradFlow.zip to your real zip filename -->
-          <a href="GradFlow.zip" class="btn-main" download>Download GradFlow (.zip)</a>
-          <a href="#docs" class="btn-secondary">Read the quick-start guide</a>
+          <!-- Change GradFlow.zip to your real file name -->
+          <a href="GradFlow.zip" class="btn-main" download>
+            Download GradFlow (.zip)
+          </a>
+          <a href="#contact" class="btn-secondary">Contact us</a>
         </div>
 
         <p class="hero-footnote">
@@ -425,7 +414,7 @@
     </div>
   </section>
 
-  <!-- Main cards: Download / Documentation / Training -->
+  <!-- Main content -->
   <main class="main">
     <div class="cards-3">
       <section class="card">
@@ -439,31 +428,29 @@
         </p>
       </section>
 
-      <section class="card" id="docs">
+      <section class="card">
         <h3>Documentation</h3>
         <p>
-          A short quick-start guide explains how to connect GradFlow to your
-          CFD data, train models, and evaluate new points.
+          A short quick-start guide will explain how to connect GradFlow to
+          your CFD data, train models, and evaluate new points.
         </p>
         <p style="margin-top:6px;">
-          <!-- replace docs link when you have one -->
-          <a href="#">Open quick-start (coming soon)</a>
+          <a href="#">Quick-start (coming soon)</a>
         </p>
       </section>
 
-      <section class="card" id="training">
+      <section class="card">
         <h3>Training and examples</h3>
         <p>
-          Example projects show how to use GradFlow for laminar flames,
+          Example projects will show how to use GradFlow for laminar flames,
           aerodynamics, and other classical CFD problems.
         </p>
         <p style="margin-top:6px;">
-          <a href="#">View example cases (coming soon)</a>
+          <a href="#">Example cases (coming soon)</a>
         </p>
       </section>
     </div>
 
-    <!-- Simple news panel like OpenFOAM's front page -->
     <section id="news">
       <h2 class="section-title">News</h2>
       <ul class="news-list">
@@ -483,11 +470,13 @@
     </section>
   </main>
 
-  <footer>
+  <footer id="contact">
     <div class="footer-inner">
       <span>© GradFlow – Where AI meets fluid dynamics.</span>
       <span>
-        Contact: <a href="mailto:your-email@example.com">your-email@example.com</a>
+        Contact:
+        <a href="mailto:your-email@example.com">your-email@example.com</a>
+        <!-- change to your real address or contact page -->
       </span>
     </div>
   </footer>
